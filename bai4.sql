@@ -3,8 +3,6 @@
 
 -- GP2 tốt hơn về cả giải phóng dung lượng và tốc độ truy vấn do data dẫ đc xóa bớt
 
-
-
 CREATE TABLE ORDERS (
     OrderID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerName VARCHAR(100),
@@ -14,14 +12,12 @@ CREATE TABLE ORDERS (
     IsDeleted BIT DEFAULT 0
 );
 
-
 INSERT INTO ORDERS (CustomerName, OrderDate, TotalAmount, Status) VALUES
 (N'Nguyễn Văn A', '2023-01-10', 500000, 'Completed'),
 (N'Khách hàng vãng lai', '2023-02-15', 1200000, 'Canceled'), 
 (N'Trần Thị B', '2023-05-20', 300000, 'Canceled'),        
 (N'Lê Văn C', '2024-01-05', 850000, 'Completed');
 
--- tạo 1 bangr mới chỉ chứa canceled
 
 CREATE TABLE ORDERS_CANCELED (
     OrderID INT PRIMARY KEY AUTO_INCREMENT,
@@ -35,8 +31,6 @@ CREATE TABLE ORDERS_CANCELED (
 INSERT INTO ORDERS_CANCELED
 SELECT * FROM ORDERS
 WHERE Status='Canceled';
-
-
--- xóa
+    
 DELETE FROM ORDERS
 WHERE Status='Canceled'
